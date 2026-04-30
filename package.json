@@ -1,0 +1,14 @@
+{
+  "name": "log-threat-analyzer",
+  "version": "1.0.0",
+  "description": "A defensive log analysis CLI that flags suspicious authentication patterns.",
+  "main": "src/cli.js",
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "node --test"
+  },
+  "keywords": ["security", "logs", "threat-detection", "defensive", "nodejs"],
+  "author": "Rene Mayen",
+  "license": "MIT",
+  "engines": { "node": ">=20" }
+}
