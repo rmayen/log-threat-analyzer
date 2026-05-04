@@ -104,3 +104,11 @@ Twelve unit tests cover the parsers, the windowed detection, severity ordering, 
 ## Security Note
 
 This project is defensive. It only reads existing logs and produces a report; it does not scan, fuzz, or send any traffic.
+
+## My Role
+
+Solo developer. Designed the detection model, implemented the multi-format log parser (simple, sshd `auth.log`, JSON line), built the sliding-window brute-force and password-spray detectors, and wrote the test suite covering parsers, severity ordering, and malformed-input handling. The project uses only Node's standard library to keep the tool dependency-free for incident-response use.
+
+## What I Learned
+
+Tuning detections is harder than writing them. A threshold of 5 failures in 10 minutes catches obvious brute-force but misses slow attackers; lowering it produces false positives on a normal user mistyping a password. I ended up exposing the threshold and window as CLI flags so the user can tune for their environment, and added `SUCCESS_AFTER_FAILURES` so the report still surfaces the most important case — a likely compromise — even when the brute-force threshold isn't tripped. I also learned how much format-handling code a "simple" log tool actually needs: the parser layer is roughly half the project.
